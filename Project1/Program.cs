@@ -6,7 +6,13 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Methods methode = new Methods();
+            bool showMenu = true;
+            while (showMenu)
+            {
+                showMenu = methode.Menu();
+            }
+            Console.ReadLine();
         }
     }
 }
