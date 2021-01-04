@@ -8,16 +8,40 @@ namespace Project1
 {
     class Methods
     {
-        Collections collection = new Collections();
+        //Collections collection = new Collections();
         private static List<Clothes> Cart = new List<Clothes>();
+        public static void PrintLogo()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine(@"
+            ╔═╗┌─┐┌┐ ┌─┐┌┐┌┌─┐
+            ║  ├─┤├┴┐├─┤│││├─┤
+            ╚═╝┴ ┴└─┘┴ ┴┘└┘┴ ┴
+            ╔═╗┬  ┌─┐┌┬┐┬ ┬┬┌┐┌┌─┐  ╔═╗┌┬┐┌─┐┬─┐┌─┐
+            ║  │  │ │ │ ├─┤│││││ ┬  ╚═╗ │ │ │├┬┘├┤ 
+            ╚═╝┴─┘└─┘ ┴ ┴ ┴┴┘└┘└─┘  ╚═╝ ┴ └─┘┴└─└─┘");
+            Console.ResetColor();
+            
+        }
         public bool Menu()
         {
             Console.Clear();
-            Console.WriteLine("Choose an option:");
-            Console.WriteLine("1) Customer");//standaard pizza's
-            Console.WriteLine("2) Owner");
-            Console.WriteLine("3) Exit");
-            Console.Write("\r\nSelect an option: ");
+            PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Choose an option:                                            ::
+            ::                                                                ::
+            ::   1) Customer                                                  ::
+            ::   2) Owner                                                     ::
+            ::   3) Exit                                                      ::
+            ::                                                                ::
+            ::   Select an option:                                            ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+             ");
 
             switch (Convert.ToChar(Console.ReadLine()))
             {
@@ -51,8 +75,22 @@ namespace Project1
 
         public void GenderSelection()
         {
-
-            Console.WriteLine("For who are you buying clothes?\n1: Female\n2: Male\n3: Kids");
+            PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Who are you buying clothes for?                              ::
+            ::                                                                ::
+            ::   1) Female                                                    ::
+            ::   2) Male                                                      ::
+            ::   3) Kids                                                      ::
+            ::                                                                ::
+            ::   Select an option:                                            ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ");
             int gender = Convert.ToInt32(Console.ReadLine());
             if (gender == 1)
             {
@@ -72,25 +110,25 @@ namespace Project1
             }
         }
 
-        public void FemaleMenu()
+        public static void FemaleMenu()
         {
             Console.Clear();
             
-            collection.FemaleCollection();
+            Collections.FemaleCollection();
           
         }
-        public void MaleMenu()
+        public static void MaleMenu()
         {
             Console.Clear();
                         
-            collection.MaleCollection();
+            Collections.MaleCollection();
             
         }
         public void KidsMenu()
         {
             Console.Clear();
 
-            collection.KidsCollection();
+            Collections.KidsCollection();
              
         }
 

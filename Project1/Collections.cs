@@ -7,19 +7,21 @@ namespace Project1
     class Collections
     {
         
-        public void FemaleCollection()
+        public static void FemaleCollection()
+        {
+            Methods.PrintLogo();
+
+        }
+        
+        public static void MaleCollection()
         {
             
+            Methods.PrintLogo();
         }
         
-        public void MaleCollection()
+        public static void KidsCollection()
         {
-
-        }
-        
-        public void KidsCollection()
-        {
-
+            Methods.PrintLogo();
         }
         
     }
