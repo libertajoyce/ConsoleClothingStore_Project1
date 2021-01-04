@@ -1,0 +1,2 @@
+﻿Tshirt: Female, FlowerPower, Blue, 5.0
+Tshirt: Male, DragonPrint, Black, 6.0

@@ -25,7 +25,9 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
-
+            Stock stock = new Stock();
+            stock.ReadDataFromFile($"C:/Users/emmad/source/repos/Project1/Project1/Inventory.txt");
+            Console.ReadLine();
         }
         
         public static void MaleCollection()

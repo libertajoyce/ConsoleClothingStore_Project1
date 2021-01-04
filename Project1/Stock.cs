@@ -1,48 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Project1
 {
     internal class Stock
     {
-        public void WriteDataToFile(string[] lines, string path)
+        public void WriteText(string textToWriteToFile, string path)
         {
             using StreamWriter writer = new StreamWriter(path, true);
-            foreach (string listLines in lines)
-            {
-                writer.WriteLine(listLines);
-            }
+            DateTime date = new DateTime();
+            date = DateTime.Now;
+            writer.WriteLine($"{textToWriteToFile} - {date}");
+            writer.Close();
         }
 
-        public List<string> ReadDataFromFile(string path)
+        public void ReadDataFromFile(string path)
         {
-            //throw new NotImplementedException();
-            string line = string.Empty;
-            using StreamReader reader = new StreamReader(path);
-            List<string> lines = new List<string>();
-
-            while ((line = reader.ReadLine()) != null)
-            {
-                lines.Add(line);
-            }
-
-            return lines;
+            string text = File.ReadAllText(path);
+            Console.WriteLine(text);
         }
 
-        public void CopyData(string fromPath, string toPath)
-        {
-            List<string> lines = ReadDataFromFile(fromPath);
+        //string pizza = "1, Funghi, 9.00, [Tomaat, Mozzarella, Salami, Champignons, Zure room]";
+        //string[] pizzaElements = pizza.Split(',');
 
-            lines.RemoveAt(2);
-            lines.Sort();
-            lines.RemoveAt(lines.Count - 1);
-            lines.Add("I'm the last of my kind.");
-            lines.ToArray();
+        //int id = Convert.ToInt32(pizzaElements[0]);
+        //string name = pizzaElements[1];
+        //double price = Convert.ToDouble(pizzaElements[2]);  
 
-            WriteDataToFile(lines.ToArray(), toPath);
-        }
+        //int index = pizza.IndexOf('[');
 
-        
+        //string ingredients = pizza.Substring(index + 1);
+        //string[] ingredientsArray = ingredients.Split(',');
+
+        //int index = clothes.IndexOf("Tshirt");
+        //string tshirt = clothes.Substring(index + 1);
     }
 }

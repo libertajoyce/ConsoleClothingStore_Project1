@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using Project1.enums;
 
 namespace Project1
 {
-    class Methods
+    internal class Methods
     {
-        //Collections collection = new Collections();
-        private static List<Clothes> Cart = new List<Clothes>();
+        private Random budgetCard = new Random();
         public static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -18,11 +14,11 @@ namespace Project1
             ║  ├─┤├┴┐├─┤│││├─┤
             ╚═╝┴ ┴└─┘┴ ┴┘└┘┴ ┴
             ╔═╗┬  ┌─┐┌┬┐┬ ┬┬┌┐┌┌─┐  ╔═╗┌┬┐┌─┐┬─┐┌─┐
-            ║  │  │ │ │ ├─┤│││││ ┬  ╚═╗ │ │ │├┬┘├┤ 
+            ║  │  │ │ │ ├─┤│││││ ┬  ╚═╗ │ │ │├┬┘├┤
             ╚═╝┴─┘└─┘ ┴ ┴ ┴┴┘└┘└─┘  ╚═╝ ┴ └─┘┴└─└─┘");
             Console.ResetColor();
-            
         }
+
         public bool Menu()
         {
             Console.Clear();
@@ -48,13 +44,16 @@ namespace Project1
                 case '1':
                     CustomerMenu();
                     return true;
+
                 case '2':
                     OwnerMenu();
                     return true;
+
                 case '3':
 
                     //exit
                     return false;
+
                 default:
                     return true;
             }
@@ -63,17 +62,15 @@ namespace Project1
         public void CustomerMenu()
         {
             Console.Clear();
-            GenderSelection();
-
+            MenuSelection();
         }
 
         public void OwnerMenu()
         {
             Console.WriteLine("This is the owner menu");
-
         }
 
-        public void GenderSelection()
+        public void MenuSelection()
         {
             PrintLogo();
             Console.WriteLine(@"
@@ -85,22 +82,37 @@ namespace Project1
             ::   1) Female                                                    ::
             ::   2) Male                                                      ::
             ::   3) Kids                                                      ::
+            ::   4) Review order                                              ::
+            ::   5) Pay order                                                 ::
+            ::   6) Return to main menu                                       ::
             ::                                                                ::
             ::   Select an option:                                            ::
             ::                                                                ::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
-            int gender = Convert.ToInt32(Console.ReadLine());
-            if (gender == 1)
+            int menuChoice = Convert.ToInt32(Console.ReadLine());
+            if (menuChoice == 1)
             {
                 FemaleMenu();
             }
-            else if (gender == 2)
+            else if (menuChoice == 2)
             {
                 MaleMenu();
             }
-            else if (gender == 3)
+            else if (menuChoice == 3)
+            {
+                KidsMenu();
+            }
+            else if (menuChoice == 4)
+            {
+                ReviewOrder();
+            }
+            else if (menuChoice == 5)
+            {
+                Payment();
+            }
+            else if (menuChoice == 6)
             {
                 KidsMenu();
             }
@@ -113,23 +125,22 @@ namespace Project1
         public static void FemaleMenu()
         {
             Console.Clear();
-            
+
             Collections.FemaleCollection();
-          
         }
+
         public static void MaleMenu()
         {
             Console.Clear();
-                        
+
             Collections.MaleCollection();
-            
         }
+
         public void KidsMenu()
         {
             Console.Clear();
 
             Collections.KidsCollection();
-             
         }
 
         private static void ErrorMessage(string errorInfo, int sleepTimer)
@@ -140,45 +151,34 @@ namespace Project1
             Console.ResetColor();
             Console.ReadLine();
         }
-        
-        public double CartBTW()
-        {
-            double total = 0;
-            int i = 0;
-            foreach (var item in Cart)
-            {
 
-                total += Cart[i].Price;
-                i++;
+        public void Payment()
+        {
+            
+            double total = CartTotal();
+            Console.WriteLine($"The total for you order is: ");
+            string paymentChoice = Console.ReadLine();
+
+            int test = budgetCard.Next(0, 5);
+            if (test != 4)
+            {
+                Console.Beep(5000, 500); Console.Beep(5000, 500); Thread.Sleep(250);
+                Console.WriteLine("Transaction passed! Enjoy your new clothes!");
+                Console.ReadLine();
             }
-            total = total / 100 * 21;
-            return total;
+            else
+            {
+                Console.WriteLine("You're too poor for these items. Try somewhere else or remove some from your cart!");
+                Console.ReadLine();
+            }
         }
-        public double CartNoBTW()
+        private double CartTotal()
         {
-            double total = 0;
-            int i = 0;
-            foreach (var item in Cart)
-            {
-
-                total += Cart[i].Price;
-                i++;
-            }
-            total = total / 100 * 79;
-            return total;
+            throw new NotImplementedException();
         }
-        public double CartTotal()
+        public void ReviewOrder()
         {
-            double total = 0;
-            int i = 0;
-            foreach (var item in Cart)
-            {
-
-                total += Cart[i].Price;
-                i++;
-            }
-            return total;
+            throw new NotImplementedException();
         }
     }
-
 }
