@@ -114,7 +114,7 @@ namespace Project1
             }
             else if (menuChoice == 6)
             {
-                KidsMenu();
+                Menu();
             }
             else
             {
@@ -155,19 +155,20 @@ namespace Project1
         public void Payment()
         {
             
-            double total = CartTotal();
+            //double total = CartTotal();
             Console.WriteLine($"The total for you order is: ");
             string paymentChoice = Console.ReadLine();
 
             int test = budgetCard.Next(0, 5);
             if (test != 4)
             {
-                Console.Beep(5000, 500); Console.Beep(5000, 500); Thread.Sleep(250);
+                Console.Beep(5000, 200); Console.Beep(5000, 200); Thread.Sleep(250);
                 Console.WriteLine("Transaction passed! Enjoy your new clothes!");
                 Console.ReadLine();
             }
             else
             {
+                Console.Beep(5000, 600); Console.Beep(5000, 600); Thread.Sleep(250);
                 Console.WriteLine("You're too poor for these items. Try somewhere else or remove some from your cart!");
                 Console.ReadLine();
             }
