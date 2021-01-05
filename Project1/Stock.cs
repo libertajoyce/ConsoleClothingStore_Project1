@@ -17,14 +17,14 @@ namespace Project1
         }
 
         //Owner or admin adds to file still needs modifications
-        public void WriteText(string textToWriteToFile, string path) 
-        {
-            using StreamWriter writer = new StreamWriter(path, true);
-            DateTime date = new DateTime();
-            date = DateTime.Now;
-            writer.WriteLine($"{textToWriteToFile} - {date}");
-            writer.Close();
-        }
+        //public void WriteText(string textToWriteToFile, string path) 
+        //{
+        //    using StreamWriter writer = new StreamWriter(path, true);
+        //    DateTime date = new DateTime();
+        //    date = DateTime.Now;
+        //    writer.WriteLine($"{textToWriteToFile} - {date}");
+        //    writer.Close();
+        //}
 
 
         // Adds a new clothing item to in memory database
@@ -51,15 +51,11 @@ namespace Project1
                 if (item.Category == choice)
                 {
                     Console.WriteLine($"               " +
-                    $"{ item.ID}) { item.Name}");
+                    $"{ item.ID}) { item.Name} €{item.Price}");
                 }
             }
             
         }
-        
-
-        
-
         public void ReadFile()
         {
             //This is how it will read file into memory database:
@@ -83,28 +79,28 @@ namespace Project1
         {
             switch (categoryID)
             {
-                case "0":
+                case "1":
                     return Categorie.Tshirt;
 
-                case "1":
+                case "2":
                     return Categorie.Longsleeve;
 
-                case "2":
+                case "3":
                     return Categorie.Jeans;
 
-                case "3":
+                case "4":
                     return Categorie.DressPants;
 
-                case "4":
+                case "5":
                     return Categorie.Dress;
 
-                case "5":
+                case "6":
                     return Categorie.Sweater;
 
-                case "6":
+                case "7":
                     return Categorie.Pyjama;
 
-                case "7":
+                case "8":
                     return Categorie.Intimates;
 
                 default:

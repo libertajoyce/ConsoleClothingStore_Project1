@@ -53,10 +53,8 @@ namespace Project1
                     return true;
 
                 case '3':
-
-                    //exit
+                    Environment.Exit(0);
                     return false;
-
                 default:
                     return true;
             }
@@ -172,13 +170,12 @@ namespace Project1
             PrintBorder();
             Console.WriteLine("");
             stock.ShowItemsFiltered(Convert.ToString(menuChoice));
-            Console.WriteLine($"\n               " +
-                "Enter the ID number of the item that you want.");
+            WhiteSpace();
+            Console.WriteLine($"Enter the ID number of the item that you want.");
             PrintBorder();
             int userInput = Convert.ToInt32(Console.ReadLine());
             GiveID(userInput);
-
-
+            ShowCatalogue();
         }
         
         public void GiveID(int userInput)
@@ -197,7 +194,6 @@ namespace Project1
                 }
             }
             PrintBorder();
-            ReviewOrder();
         }
        
         public void ReviewOrder()
@@ -205,16 +201,50 @@ namespace Project1
             Console.Clear();
             PrintLogo();
             PrintBorder();
-            Console.WriteLine($"               " +
-                $"Your order:");
-
+            WhiteSpace();
+            Console.WriteLine($"Your order:");
+            double total = CartTotal();
             foreach (var item in Cart)
             {
-                Console.WriteLine($"              " +
-                    $"{item.ID}: {item.Name} €{item.Price} \n");
+                WhiteSpace();
+                Console.WriteLine($"{item.ID}: {item.Name} €{item.Price} \n");
             }
+            WhiteSpace();
+            Console.WriteLine($"The total of your order is €{total}");
+            WhiteSpace();
+            Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(),2)}");
+            WhiteSpace();
+            Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(),2)}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            WhiteSpace();
+            Console.WriteLine("Press 'D' to delete an item:");
+            Console.ResetColor();
+            if (Console.ReadKey().Key == ConsoleKey.D)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                WhiteSpace();
+                Console.WriteLine("Enter the item number that you want to remove:");
+                Console.ResetColor();
+                int remove = Convert.ToInt32(Console.ReadLine());
+                foreach (var item in stock.Catalogue)
+                {
+                    if (item.ID == remove)
+                    {
+                        Cart.Remove(item);
+                        WhiteSpace();
+                        Console.WriteLine($"The item has been removed.");
+                        Console.ReadLine();
+                    }
+                }
+                WhiteSpace();
+                Console.WriteLine($"Updated total order: €{Math.Round(CartTotal(), 2)} including 21% BTW.");
+            }
+            WhiteSpace();
+            Console.WriteLine("To go back to the catalogue, press enter:");
+            Console.ResetColor();
             PrintBorder();
             Console.ReadLine();
+            ShowCatalogue();
         }
         private static void ErrorMessage(string errorInfo, int sleepTimer)
         {
@@ -271,27 +301,71 @@ namespace Project1
         }
         public void Payment()
         {
-            
-            //double total = CartTotal();
-            Console.WriteLine("The total for you order is: {total}");
+            Console.Clear();
+            PrintLogo();
+            PrintBorder();
+            double total = CartTotal();
+            WhiteSpace();
+            Console.WriteLine($"The total for you order is: {Math.Round(total,2)}");
 
             int test = budgetCard.Next(0, 5);
-            if (test != 4)
+            if (test < 4)
             {
-                Console.Beep(5000, 200); Console.Beep(5000, 200); Console.Beep(5000, 200); Thread.Sleep(250);
+                Console.Beep(5000, 150); Console.Beep(5000, 150); Console.Beep(5000, 150); Thread.Sleep(250);
+                WhiteSpace();
                 Console.WriteLine("Transaction passed! Enjoy your new clothes!");
+                PrintBorder();
                 Console.ReadLine();
+                PrintTicket();
             }
             else
             {
-                Console.Beep(5000, 600); Console.Beep(5000, 600); Thread.Sleep(250);
+                Console.Beep(5000, 800); Console.Beep(5000, 800); Thread.Sleep(250);
+                WhiteSpace();
                 Console.WriteLine("You're too poor for these items. Try somewhere else or remove some items from your cart!");
+                PrintBorder();
                 Console.ReadLine();
+                ReviewOrder();
             }
+            //PrintBorder();
+            //Console.ReadLine();
+            //PrintTicket();
         }
         private double CartTotal()
         {
-            throw new NotImplementedException();
+            double total = 0;
+            int i = 0;
+            foreach (var item in Cart)
+            {
+
+                total += Cart[i].Price;
+                i++;
+            }
+            return total;
+        }
+
+        private void PrintTicket()
+        {
+            Console.Clear();
+            PrintLogo();
+            PrintBorder();
+            WhiteSpace();
+            Console.WriteLine($"Ticket:\n");
+            WhiteSpace();
+            Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(), 2)}");
+            WhiteSpace();
+            Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(), 2)}");
+            WhiteSpace();
+            Console.WriteLine($"The total of your order is €{CartTotal()}");
+            Console.WriteLine(@"
+                ──────▄▀▄─────▄▀▄──────
+                ─────▄█░░▀▀▀▀▀░░█▄─────
+                ─▄▄──█░░░░░░░░░░░█──▄▄─
+                █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
+             Thank you for your purrrchase!");
+            PrintBorder();
+            Console.ReadLine();
+            Environment.Exit(0);
         }
         
         public void PrintBorder()
@@ -300,6 +374,10 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
             Console.WriteLine();
+        }
+        public void WhiteSpace()
+        {
+            Console.Write("               ");
         }
     }
 }

@@ -1,13 +1,19 @@
 ﻿ID,Category,Name,Price
-1,0,Mens Shirt,9.99
-2,0,Lady Blouse,14.00
-3,1,Jeans Pants, 59.00
-4,3,Clothing Item ?, 7.00
-5,8,Necklace,8.15
-6,2,Necklace,8.15
-7,4,Necklace,8.15
-8,6,Necklace,8.15
-9,7,Lace bra,8.15
-10,5,Necklace,8.15
-11,2,Necklace,8.15
-12,8,Necklace,8.15
+1,1,TShirt Woman size S,9.99
+2,1,TShirt Man size L,14.00
+3,2,Women longsleeve size M, 25.00
+4,2,Men longsleeve size XL, 7.00
+5,3,Women skinny jeans size 40,35.00
+6,3,Men skinny jeans size 32,38.00
+7,4,Women Wide leg size 38,14.00
+8,4,Men suit pants size 34,16.00
+9,5,Party Dress size XXL,20.15
+10,5,Casual Dress size M,18.15
+11,6,Women hoody size L,15.50
+12,6,Men hoody size L,14.00
+13,7,Women fleece pj size XS,12.00
+14,7,Men flannel pj size XXL,9.00
+15,8,Lace lingerie size 34B/S,42.99
+16,8,Boxershorts size M,12.00
+17,9,Necklace,24.00
+18,9,Earrings,36.99

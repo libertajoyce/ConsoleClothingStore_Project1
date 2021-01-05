@@ -6,7 +6,7 @@ namespace Project1.enums
 {
     public enum Categorie
     {
-        Tshirt,
+        Tshirt=1,
         Longsleeve,
         Jeans,
         DressPants,
