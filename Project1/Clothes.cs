@@ -13,21 +13,21 @@ namespace Project1
 
         public ClothingSize ClothingSize { get; set; }
 
+        public Categorie Category { get; set; }
+
         public Color Color { get; set; }
 
         public Gender Gender { get; set; }
 
-        private int PID = 1;
         public int ID { get; set; }
 
-        public Clothes(string name, double price, ClothingSize clothingSize, Color color, Gender gender)
+        public Clothes()
         {
-            Name = name;
-            Price = price;
-            ClothingSize = clothingSize;
-            Color = color;
-            Gender = gender;
-            ID = PID++;
+            //Name = name;
+            //Price = price;
+            //ClothingSize = clothingSize;
+            ////Color = color;
+            ////Gender = gender;
 
         }
 

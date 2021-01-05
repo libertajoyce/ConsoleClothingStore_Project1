@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Project1
@@ -6,6 +7,8 @@ namespace Project1
     internal class Methods
     {
         private Random budgetCard = new Random();
+        private static List<Clothes> Cart = new List<Clothes>();
+        Stock stock = new Stock();
         public static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -79,12 +82,10 @@ namespace Project1
             ::                                                                ::
             ::   Who are you buying clothes for?                              ::
             ::                                                                ::
-            ::   1) Female                                                    ::
-            ::   2) Male                                                      ::
-            ::   3) Kids                                                      ::
-            ::   4) Review order                                              ::
-            ::   5) Pay order                                                 ::
-            ::   6) Return to main menu                                       ::
+            ::   1) Show catalogue                                            ::
+            ::   2) Review order                                              ::
+            ::   3) Pay order                                                 ::
+            ::   4) Return to main menu                                       ::
             ::                                                                ::
             ::   Select an option:                                            ::
             ::                                                                ::
@@ -94,25 +95,17 @@ namespace Project1
             int menuChoice = Convert.ToInt32(Console.ReadLine());
             if (menuChoice == 1)
             {
-                FemaleMenu();
+                ShowCatalogue();
             }
             else if (menuChoice == 2)
             {
-                MaleMenu();
+                ReviewOrder();
             }
             else if (menuChoice == 3)
             {
-                KidsMenu();
-            }
-            else if (menuChoice == 4)
-            {
-                ReviewOrder();
-            }
-            else if (menuChoice == 5)
-            {
                 Payment();
             }
-            else if (menuChoice == 6)
+            else if (menuChoice == 4)
             {
                 Menu();
             }
@@ -122,27 +115,107 @@ namespace Project1
             }
         }
 
-        public static void FemaleMenu()
+        public void ShowCatalogue()
+        {
+            PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   What category do you want to see?                            ::
+            ::                                                                ::
+            ::   1) T-shirts                                                  ::
+            ::   2) Longsleeve                                                ::
+            ::   3) Jeans                                                     ::
+            ::   4) DressPants                                                ::
+            ::   5) Dress                                                     ::
+            ::   6) Sweater                                                   ::
+            ::   7) Pyjama                                                    ::
+            ::   8) Intimates                                                 ::
+            ::   9) Misc                                                      ::
+            ::   10) Review order                                             ::
+            ::   11) Pay order                                                ::
+            ::   12) Return to main menu                                      ::
+            ::                                                                ::
+            ::   Select an option:                                            ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ");
+            int menuChoice = Convert.ToInt32(Console.ReadLine());
+            if (menuChoice < 10)
+            {
+                Catalogue(Convert.ToString(menuChoice));
+                Console.ReadLine();
+            }
+            else if (menuChoice == 10)
+            {
+                ReviewOrder();
+            }
+            else if (menuChoice == 11)
+            {
+                Payment();
+            }
+            else if (menuChoice == 12)
+            {
+                Menu();
+            }
+            else
+            {
+                ErrorMessage("Error! Not a correct input!", 20);
+            }
+        }
+        public void Catalogue(string menuChoice)
         {
             Console.Clear();
+            PrintLogo();
+            PrintBorder();
+            Console.WriteLine("");
+            stock.ShowItemsFiltered(Convert.ToString(menuChoice));
+            Console.WriteLine($"\n               " +
+                "Enter the ID number of the item that you want.");
+            PrintBorder();
+            int userInput = Convert.ToInt32(Console.ReadLine());
+            GiveID(userInput);
 
-            Collections.FemaleCollection();
+
         }
-
-        public static void MaleMenu()
+        
+        public void GiveID(int userInput)
+        {
+            var choice = userInput;
+            Console.Clear();
+            PrintLogo();
+            PrintBorder();
+            foreach (var item in stock.Catalogue)
+            {
+                if (item.ID == choice)
+                {
+                    Cart.Add(item);
+                    Console.WriteLine($"               " +
+                    $"You've selected {item.Name} which costs €{ item.Price}");
+                }
+            }
+            PrintBorder();
+            ReviewOrder();
+        }
+       
+        public void ReviewOrder()
         {
             Console.Clear();
+            PrintLogo();
+            PrintBorder();
+            Console.WriteLine($"               " +
+                $"Your order:");
 
-            Collections.MaleCollection();
+            foreach (var item in Cart)
+            {
+                Console.WriteLine($"              " +
+                    $"{item.ID}: {item.Name} €{item.Price} \n");
+            }
+            PrintBorder();
+            Console.ReadLine();
         }
-
-        public void KidsMenu()
-        {
-            Console.Clear();
-
-            Collections.KidsCollection();
-        }
-
         private static void ErrorMessage(string errorInfo, int sleepTimer)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -151,25 +224,68 @@ namespace Project1
             Console.ResetColor();
             Console.ReadLine();
         }
+        public double ClothesBTW()
+        {
+            double total = 0;
+            int i = 0;
+            foreach (var item in Cart)
+            {
 
+                total += Cart[i].Price;
+                i++;
+            }
+            total = total / 100 * 21;
+            return total;
+        }
+        public double ClothesNoBTW()
+        {
+            double total = 0;
+            int i = 0;
+            foreach (var item in Cart)
+            {
+
+                total += Cart[i].Price;
+                i++;
+            }
+            total = total / 100 * 79;
+            return total;
+        }
+        public double ClothesTotal()
+        {
+            double total = 0;
+            int i = 0;
+            foreach (var item in Cart)
+            {
+
+                total += Cart[i].Price;
+                i++;
+            }
+            return total;
+        }
+        public void ClothesEnd(Clothes clothes)
+        {
+            Console.Clear();
+            Console.WriteLine($"You selected a {clothes.Name} which costs {clothes.Price}euro.");
+            Cart.Add(clothes);
+            Console.ReadLine();
+        }
         public void Payment()
         {
             
             //double total = CartTotal();
-            Console.WriteLine($"The total for you order is: ");
-            string paymentChoice = Console.ReadLine();
+            Console.WriteLine("The total for you order is: {total}");
 
             int test = budgetCard.Next(0, 5);
             if (test != 4)
             {
-                Console.Beep(5000, 200); Console.Beep(5000, 200); Thread.Sleep(250);
+                Console.Beep(5000, 200); Console.Beep(5000, 200); Console.Beep(5000, 200); Thread.Sleep(250);
                 Console.WriteLine("Transaction passed! Enjoy your new clothes!");
                 Console.ReadLine();
             }
             else
             {
                 Console.Beep(5000, 600); Console.Beep(5000, 600); Thread.Sleep(250);
-                Console.WriteLine("You're too poor for these items. Try somewhere else or remove some from your cart!");
+                Console.WriteLine("You're too poor for these items. Try somewhere else or remove some items from your cart!");
                 Console.ReadLine();
             }
         }
@@ -177,9 +293,13 @@ namespace Project1
         {
             throw new NotImplementedException();
         }
-        public void ReviewOrder()
+        
+        public void PrintBorder()
         {
-            throw new NotImplementedException();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            Console.WriteLine();
         }
     }
 }

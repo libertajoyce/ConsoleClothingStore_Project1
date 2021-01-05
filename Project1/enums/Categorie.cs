@@ -13,6 +13,7 @@ namespace Project1.enums
         Dress,
         Sweater,
         Pyjama,
-        Intimates
+        Intimates,
+        Misc
     }
 }
