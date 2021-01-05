@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project1.enums
+﻿namespace Project1.enums
 {
-    public enum  Color
+    public enum Color
     {
         Blue,
         Black,
@@ -13,6 +9,5 @@ namespace Project1.enums
         Green,
         Yellow,
         Pink
-    
     }
 }

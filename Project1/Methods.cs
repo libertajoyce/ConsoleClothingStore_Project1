@@ -8,7 +8,8 @@ namespace Project1
     {
         private Random budgetCard = new Random();
         private static List<Clothes> Cart = new List<Clothes>();
-        Stock stock = new Stock();
+        private Stock stock = new Stock();
+
         public static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -55,6 +56,7 @@ namespace Project1
                 case '3':
                     Environment.Exit(0);
                     return false;
+
                 default:
                     return true;
             }
@@ -163,6 +165,7 @@ namespace Project1
                 ErrorMessage("Error! Not a correct input!", 20);
             }
         }
+
         public void Catalogue(string menuChoice)
         {
             Console.Clear();
@@ -177,7 +180,7 @@ namespace Project1
             GiveID(userInput);
             ShowCatalogue();
         }
-        
+
         public void GiveID(int userInput)
         {
             var choice = userInput;
@@ -195,7 +198,7 @@ namespace Project1
             }
             PrintBorder();
         }
-       
+
         public void ReviewOrder()
         {
             Console.Clear();
@@ -212,15 +215,16 @@ namespace Project1
             WhiteSpace();
             Console.WriteLine($"The total of your order is €{total}");
             WhiteSpace();
-            Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(),2)}");
+            Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(), 2)}");
             WhiteSpace();
-            Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(),2)}");
+            Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(), 2)}");
             Console.ForegroundColor = ConsoleColor.Yellow;
             WhiteSpace();
             Console.WriteLine("Press 'D' to delete an item:");
             Console.ResetColor();
             if (Console.ReadKey().Key == ConsoleKey.D)
             {
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 WhiteSpace();
                 Console.WriteLine("Enter the item number that you want to remove:");
@@ -246,6 +250,7 @@ namespace Project1
             Console.ReadLine();
             ShowCatalogue();
         }
+
         private static void ErrorMessage(string errorInfo, int sleepTimer)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -254,44 +259,45 @@ namespace Project1
             Console.ResetColor();
             Console.ReadLine();
         }
+
         public double ClothesBTW()
         {
             double total = 0;
             int i = 0;
             foreach (var item in Cart)
             {
-
                 total += Cart[i].Price;
                 i++;
             }
             total = total / 100 * 21;
             return total;
         }
+
         public double ClothesNoBTW()
         {
             double total = 0;
             int i = 0;
             foreach (var item in Cart)
             {
-
                 total += Cart[i].Price;
                 i++;
             }
             total = total / 100 * 79;
             return total;
         }
+
         public double ClothesTotal()
         {
             double total = 0;
             int i = 0;
             foreach (var item in Cart)
             {
-
                 total += Cart[i].Price;
                 i++;
             }
             return total;
         }
+
         public void ClothesEnd(Clothes clothes)
         {
             Console.Clear();
@@ -299,6 +305,7 @@ namespace Project1
             Cart.Add(clothes);
             Console.ReadLine();
         }
+
         public void Payment()
         {
             Console.Clear();
@@ -306,7 +313,7 @@ namespace Project1
             PrintBorder();
             double total = CartTotal();
             WhiteSpace();
-            Console.WriteLine($"The total for you order is: {Math.Round(total,2)}");
+            Console.WriteLine($"The total for you order is: {Math.Round(total, 2)}");
 
             int test = budgetCard.Next(0, 5);
             if (test < 4)
@@ -331,13 +338,13 @@ namespace Project1
             //Console.ReadLine();
             //PrintTicket();
         }
+
         private double CartTotal()
         {
             double total = 0;
             int i = 0;
             foreach (var item in Cart)
             {
-
                 total += Cart[i].Price;
                 i++;
             }
@@ -367,7 +374,7 @@ namespace Project1
             Console.ReadLine();
             Environment.Exit(0);
         }
-        
+
         public void PrintBorder()
         {
             Console.WriteLine(@"
@@ -375,6 +382,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
             Console.WriteLine();
         }
+
         public void WhiteSpace()
         {
             Console.Write("               ");

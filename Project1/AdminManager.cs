@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Project1
 {
-    class AdminManager
+    internal class AdminManager
     {
         public void CreateFile(string file)
         {
@@ -27,7 +25,5 @@ namespace Project1
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

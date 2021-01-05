@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Project1.enums;
+﻿using Project1.enums;
 
 namespace Project1
 {
-    class Clothes
+    internal class Clothes
     {
         public double Price { get; set; }
 
@@ -28,15 +25,6 @@ namespace Project1
             //ClothingSize = clothingSize;
             ////Color = color;
             ////Gender = gender;
-
         }
-
-        
-
-       
-
-
-
     }
-      
 }

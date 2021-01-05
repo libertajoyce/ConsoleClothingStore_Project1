@@ -17,7 +17,7 @@ namespace Project1
         }
 
         //Owner or admin adds to file still needs modifications
-        //public void WriteText(string textToWriteToFile, string path) 
+        //public void WriteText(string textToWriteToFile, string path)
         //{
         //    using StreamWriter writer = new StreamWriter(path, true);
         //    DateTime date = new DateTime();
@@ -25,7 +25,6 @@ namespace Project1
         //    writer.WriteLine($"{textToWriteToFile} - {date}");
         //    writer.Close();
         //}
-
 
         // Adds a new clothing item to in memory database
         public void AddClothing(Clothes item)
@@ -45,7 +44,7 @@ namespace Project1
         public void ShowItemsFiltered(string userChoice)
         {
             var choice = ConvertCategorie(userChoice);
-            
+
             foreach (var item in Catalogue)
             {
                 if (item.Category == choice)
@@ -54,8 +53,8 @@ namespace Project1
                     $"{ item.ID}) { item.Name} €{item.Price}");
                 }
             }
-            
         }
+
         public void ReadFile()
         {
             //This is how it will read file into memory database:
@@ -75,6 +74,7 @@ namespace Project1
                 Catalogue.Add(item);
             }
         }
+
         public Categorie ConvertCategorie(string categoryID)
         {
             switch (categoryID)

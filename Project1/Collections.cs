@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Project1
 {
-    class Collections
+    internal class Collections
     {
-        
         public static void FemaleCollection()
         {
             Methods.PrintLogo();
@@ -27,10 +24,9 @@ namespace Project1
             ");
             Console.ReadLine();
         }
-        
+
         public static void MaleCollection()
         {
-            
             Methods.PrintLogo();
             Console.WriteLine(@"
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -48,7 +44,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
         }
-        
+
         public static void KidsCollection()
         {
             Methods.PrintLogo();
@@ -68,6 +64,5 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
         }
-        
     }
 }
