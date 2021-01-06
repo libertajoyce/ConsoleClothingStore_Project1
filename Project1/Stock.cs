@@ -15,32 +15,30 @@ namespace Project1
 
             ReadFile();
         }
-
-        //Owner or admin adds to file still needs modifications
-        //public void WriteText(string textToWriteToFile, string path)
-        //{
-        //    using StreamWriter writer = new StreamWriter(path, true);
-        //    DateTime date = new DateTime();
-        //    date = DateTime.Now;
-        //    writer.WriteLine($"{textToWriteToFile} - {date}");
-        //    writer.Close();
-        //}
-
-        // Adds a new clothing item to in memory database
-        public void AddClothing(Clothes item)
+        public void AlterInventory()
         {
+            WriteText("C:/users/emmad/source/repos/Project1/Project1/Inventory.txt");
+        }
+        //Owner or admin adds to file still needs modifications
+        public void WriteText(string path)
+        {
+            using StreamWriter writer = new StreamWriter(path, true);
+            Clothes item = new Clothes();
+            
+            Console.WriteLine("Enter the name of the clothing:");
+            item.Name = Console.ReadLine();
+            Console.WriteLine("Enter the price of that piece of clothing:");
+            item.Price = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter the category:\n1.Tshirts\n2.Longsleeves\n3.Jeans\n4.Dress Pants\n5. Dress\n6. Sweater\n7. Pyjama\n8. Intimates\n9. Misc");
+            string categoryChoice = Console.ReadLine();
+            item.Category = ConvertCategorie(categoryChoice);
             item.ID = Catalogue.Count + 1;
             Catalogue.Add(item);
-        }
+            writer.Write($"\n{item.ID},{categoryChoice},{item.Name},{item.Price:#.##}");
 
-        public void ShowItems()
-        {
-            foreach (var item in Catalogue)
-            {
-                Console.WriteLine($"{item.Name} - {item.ID}");
-            }
+            writer.Close();
         }
-
+       
         public void ShowItemsFiltered(string userChoice)
         {
             var choice = ConvertCategorie(userChoice);

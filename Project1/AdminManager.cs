@@ -5,6 +5,11 @@ namespace Project1
 {
     internal class AdminManager
     {
+        //public void AlterInventory()
+        //{
+        //    Stock stock = new Stock();
+        //    stock.WriteText("C:/users/emmad/source/repos/Project1/Project1/Inventory.txt");
+        //}
         public void CreateFile(string file)
         {
             //throw new NotImplementedException();

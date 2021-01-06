@@ -8,8 +8,7 @@ namespace Project1
     {
         private Random budgetCard = new Random();
         private static List<Clothes> Cart = new List<Clothes>();
-        private Stock stock = new Stock();
-
+        Stock stock = new Stock();
         public static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -70,7 +69,9 @@ namespace Project1
 
         public void OwnerMenu()
         {
+            AdminManager managing = new AdminManager();
             Console.WriteLine("This is the owner menu");
+            stock.AlterInventory();
         }
 
         public void MenuSelection()
