@@ -105,5 +105,55 @@ namespace Project1
                     return Categorie.Misc;
             }
         }
+        public ClothingSize ConvertClothingSize(string clothingID)
+        {
+            switch (clothingID)
+            {
+                case "1":
+                    return ClothingSize.XS;
+
+                case "2":
+                    return ClothingSize.S;
+
+                case "3":
+                    return ClothingSize.M;
+
+                case "4":
+                    return ClothingSize.L;
+
+                case "5":
+                    return ClothingSize.XL;
+
+                case "6":
+                    return ClothingSize.XXL;
+                default:
+                    return ClothingSize.TU;
+            }
+        }
+        public Color ConvertColor(string colorID)
+        {
+            switch (colorID)
+            {
+                case "1":
+                    return Color.Blue;
+
+                case "2":
+                    return Color.Black;
+
+                case "3":
+                    return Color.Red;
+
+                case "4":
+                    return Color.Green;
+
+                case "5":
+                    return Color.Yellow;
+
+                case "6":
+                    return Color.Pink;
+                default:
+                    return Color.White;
+            }
+        }
     }
 }
