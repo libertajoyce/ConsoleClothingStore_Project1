@@ -79,28 +79,20 @@ namespace Project1
             {
                 case "1":
                     return Categorie.Tshirt;
-
                 case "2":
                     return Categorie.Longsleeve;
-
                 case "3":
                     return Categorie.Jeans;
-
                 case "4":
                     return Categorie.DressPants;
-
                 case "5":
                     return Categorie.Dress;
-
                 case "6":
                     return Categorie.Sweater;
-
                 case "7":
                     return Categorie.Pyjama;
-
                 case "8":
                     return Categorie.Intimates;
-
                 default:
                     return Categorie.Misc;
             }
@@ -111,19 +103,14 @@ namespace Project1
             {
                 case "1":
                     return ClothingSize.XS;
-
                 case "2":
                     return ClothingSize.S;
-
                 case "3":
                     return ClothingSize.M;
-
                 case "4":
                     return ClothingSize.L;
-
                 case "5":
                     return ClothingSize.XL;
-
                 case "6":
                     return ClothingSize.XXL;
                 default:
@@ -136,21 +123,16 @@ namespace Project1
             {
                 case "1":
                     return Color.Blue;
-
                 case "2":
                     return Color.Black;
-
                 case "3":
                     return Color.Red;
-
                 case "4":
                     return Color.Green;
-
                 case "5":
                     return Color.Yellow;
-
                 case "6":
-                    return Color.Pink;
+                    return Color.Pink; 
                 default:
                     return Color.White;
             }
