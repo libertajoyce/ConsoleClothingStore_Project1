@@ -71,7 +71,7 @@ namespace Project1
         {
             AdminManager managing = new AdminManager();
             Console.WriteLine("This is the owner menu");
-            stock.AlterInventory();
+            stock.AddToInventory();
         }
 
         public void MenuSelection()

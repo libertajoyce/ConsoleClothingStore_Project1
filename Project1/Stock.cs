@@ -15,7 +15,7 @@ namespace Project1
 
             ReadFile();
         }
-        public void AlterInventory()
+        public void AddToInventory()
         {
             WriteText("C:/users/emmad/source/repos/Project1/Project1/Inventory.txt");
         }
