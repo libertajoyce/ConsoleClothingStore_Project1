@@ -3,13 +3,13 @@
     public enum Categorie
     {
         Tshirt = 1,
-        Longsleeve,
-        Jeans,
-        DressPants,
-        Dress,
-        Sweater,
-        Pyjama,
-        Intimates,
-        Misc
+        Longsleeve = 2,
+        Jeans = 3,
+        DressPants = 4,
+        Dress = 5,
+        Sweater = 6,
+        Pyjama = 7,
+        Intimates = 8,
+        Misc = 9
     }
 }

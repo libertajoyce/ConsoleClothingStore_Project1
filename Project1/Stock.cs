@@ -58,7 +58,7 @@ namespace Project1
             ");
             Methods.WhiteSpace();
             string categoryChoice = Console.ReadLine();
-            item.Category = ConvertCategorie(categoryChoice);
+            item.Category = ConvertCategory(categoryChoice);
             Methods.WhiteSpace();
             Console.WriteLine("Category added, succesfully!");
 
@@ -187,7 +187,7 @@ namespace Project1
 
         public void ShowItemsFiltered(string userCategorieChoice)
         {
-            var categoryChoice = ConvertCategorie(userCategorieChoice);
+            Categorie categoryChoice = ConvertCategory(userCategorieChoice);
             int ID = 1;
             foreach (var item in Catalogue)
             {
@@ -213,7 +213,7 @@ namespace Project1
                 Clothes item = new Clothes
                 {
                     ID = Convert.ToInt32(data[0]),
-                    Category = ConvertCategorie(data[1]),
+                    Category = ConvertCategory(data[1]),
                     Name = data[2],
                     ClothingSizes = ConvertClothingSize(data[3]),
                     ColorOptions = ConvertColor(data[4]),
@@ -223,7 +223,7 @@ namespace Project1
             }
         }
 
-        public Categorie ConvertCategorie(string categoryID)
+        public Categorie ConvertCategory(string categoryID)
         {
             switch (categoryID)
             {

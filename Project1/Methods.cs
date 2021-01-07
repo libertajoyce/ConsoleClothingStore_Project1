@@ -222,6 +222,8 @@ namespace Project1
             Console.WriteLine("");
             stock.ShowItemsFiltered(Convert.ToString(menuChoice));
             WhiteSpace();
+            Console.WriteLine("");
+            WhiteSpace();
             Console.WriteLine($"Enter the ID number of the item that you want.");
             PrintBorder();
             WhiteSpace();
@@ -254,20 +256,23 @@ namespace Project1
             PrintLogo();
             PrintBorder();
             WhiteSpace();
-            Console.WriteLine($"Your order:");
+            Console.WriteLine($"Your order:\n");
             double total = CartTotal();
             foreach (var item in Cart)
             {
                 WhiteSpace();
-                Console.WriteLine($"{item.ID}: {item.Name} €{item.Price} \n");
+                Console.WriteLine($"{item.ID}: {item.Name} €{item.Price}");
             }
+            PrintBorder();
             WhiteSpace();
-            Console.WriteLine($"The total of your order is €{total}");
+            Console.WriteLine($"The total of your order is €{Math.Round(total)}");
             WhiteSpace();
             Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(), 2)}");
             WhiteSpace();
             Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(), 2)}");
             Console.ForegroundColor = ConsoleColor.Yellow;
+            WhiteSpace();
+            Console.WriteLine("");
             WhiteSpace();
             Console.WriteLine("Press 'D' to delete an item:");
             Console.ResetColor();
@@ -297,7 +302,6 @@ namespace Project1
             }
             WhiteSpace();
             Console.WriteLine("To go back to the catalogue, press enter:");
-            Console.ResetColor();
             PrintBorder();
             WhiteSpace();
             Console.ReadLine();
@@ -375,6 +379,8 @@ namespace Project1
                 WhiteSpace();
                 Console.WriteLine("Transaction passed! Enjoy your new clothes!");
                 PrintBorder();
+                WhiteSpace();
+                Console.WriteLine("Press ENTER to print ticket");
                 Console.ReadLine();
                 PrintTicket();
             }
@@ -408,19 +414,24 @@ namespace Project1
             PrintBorder();
             WhiteSpace();
             Console.WriteLine($"Ticket:\n");
+            foreach (var item in Cart)
+            {
+                WhiteSpace();
+                Console.WriteLine($"{item.Name} €{item.Price}");
+            }
+            PrintBorder();
             WhiteSpace();
             Console.WriteLine($"Excl 21% BTW: €{Math.Round(ClothesNoBTW(), 2)}");
             WhiteSpace();
             Console.WriteLine($"21% BTW: €{Math.Round(ClothesBTW(), 2)}");
             WhiteSpace();
-            Console.WriteLine($"The total of your order is €{CartTotal()}");
+            Console.WriteLine($"The total of your order is €{Math.Round(CartTotal(), 2)}");
             Console.WriteLine(@"
                 ──────▄▀▄─────▄▀▄──────
                 ─────▄█░░▀▀▀▀▀░░█▄─────
                 ─▄▄──█░░░░░░░░░░░█──▄▄─
                 █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
              Thank you for your purrrchase!");
-            PrintBorder();
             Console.ReadLine();
             Environment.Exit(0);
         }
