@@ -8,7 +8,7 @@ namespace Project1
     {
         private Random budgetCard = new Random();
         public static List<Clothes> Cart = new List<Clothes>();
-        Stock stock = new Stock();
+        private Stock stock = new Stock();
 
         public static void PrintLogo()
         {
@@ -42,7 +42,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
              ");
-
+            WhiteSpace();
             switch (Convert.ToChar(Console.ReadLine()))
             {
                 case '1':
@@ -70,8 +70,24 @@ namespace Project1
 
         public bool OwnerMenu()
         {
-            AdminManager managing = new AdminManager();
-            Console.WriteLine("Enter the number of the option you want to select:\n1. Add to inventory.\n2. Remove from inventory\n3. Go back to main menu.");
+            Console.Clear();
+            PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Choose an option:                                            ::
+            ::                                                                ::
+            ::   1) Add to inventory                                          ::
+            ::   2) Remove from inventory                                     ::
+            ::   3) Back                                                      ::
+            ::                                                                ::
+            ::   Select an option:                                            ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+             ");
+            WhiteSpace();
             string ownerChoice = Console.ReadLine();
             switch (Convert.ToChar(ownerChoice))
             {
@@ -88,7 +104,7 @@ namespace Project1
                     return false;
 
                 default:
-                    ErrorMessage("Wrong Selection!",20);
+                    ErrorMessage("Wrong Selection!", 20);
                     return true;
             }
         }
@@ -100,7 +116,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::                                                                ::
-            ::   Who are you buying clothes for?                              ::
+            ::   Select an option:                                            ::
             ::                                                                ::
             ::   1) Show catalogue                                            ::
             ::   2) Review order                                              ::
@@ -112,6 +128,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
+            WhiteSpace();
             int menuChoice = Convert.ToInt32(Console.ReadLine());
             if (menuChoice == 1)
             {
@@ -134,14 +151,17 @@ namespace Project1
                 ErrorMessage("Error! Not a correct input!", 20);
             }
         }
+
         public void AddToInventory()
         {
             stock.OwnerWriteText();
         }
+
         public void RemoveFromInventory()
         {
             stock.OwnerDeleteText();
         }
+
         public void ShowCatalogue()
         {
             PrintLogo();
@@ -169,6 +189,7 @@ namespace Project1
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             ");
+            WhiteSpace();
             int menuChoice = Convert.ToInt32(Console.ReadLine());
             if (menuChoice < 10)
             {
@@ -203,6 +224,7 @@ namespace Project1
             WhiteSpace();
             Console.WriteLine($"Enter the ID number of the item that you want.");
             PrintBorder();
+            WhiteSpace();
             int userInput = Convert.ToInt32(Console.ReadLine());
             GiveID(userInput);
             ShowCatalogue();
@@ -249,6 +271,7 @@ namespace Project1
             WhiteSpace();
             Console.WriteLine("Press 'D' to delete an item:");
             Console.ResetColor();
+            WhiteSpace();
             if (Console.ReadKey().Key == ConsoleKey.D)
             {
                 Console.WriteLine();
@@ -256,6 +279,7 @@ namespace Project1
                 WhiteSpace();
                 Console.WriteLine("Enter the item number that you want to remove:");
                 Console.ResetColor();
+                WhiteSpace();
                 int remove = Convert.ToInt32(Console.ReadLine());
                 foreach (var item in stock.Catalogue)
                 {
@@ -264,6 +288,7 @@ namespace Project1
                         Cart.Remove(item);
                         WhiteSpace();
                         Console.WriteLine($"The item has been removed.");
+                        WhiteSpace();
                         Console.ReadLine();
                     }
                 }
@@ -274,6 +299,7 @@ namespace Project1
             Console.WriteLine("To go back to the catalogue, press enter:");
             Console.ResetColor();
             PrintBorder();
+            WhiteSpace();
             Console.ReadLine();
             ShowCatalogue();
         }
@@ -361,7 +387,6 @@ namespace Project1
                 Console.ReadLine();
                 ReviewOrder();
             }
-            
         }
 
         private double CartTotal()
@@ -400,7 +425,7 @@ namespace Project1
             Environment.Exit(0);
         }
 
-        public void PrintBorder()
+        public static void PrintBorder()
         {
             Console.WriteLine(@"
             ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -408,7 +433,7 @@ namespace Project1
             Console.WriteLine();
         }
 
-        public void WhiteSpace()
+        public static void WhiteSpace()
         {
             Console.Write("               ");
         }

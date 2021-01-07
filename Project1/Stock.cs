@@ -7,8 +7,9 @@ namespace Project1
 {
     internal class Stock
     {
+        //Deze path moet aangepast worden naar de locatie waar "Project1" zich bevind op uw computer.
         private string filePath = "C:/users/emmad/source/repos/Project1/Project1/Inventory.txt";
-        private string filePath2 = "C:/users/emmad/source/repos/Project1/Project1/Inventory.txt";
+
         public List<Clothes> Catalogue { get; set; }
 
         public Stock()
@@ -18,37 +19,116 @@ namespace Project1
             ReadFile();
         }
 
-        //Owner or admin adds to file
         public void OwnerWriteText()
         {
             using StreamWriter writer = new StreamWriter(filePath, true);
             Clothes item = new Clothes();
+            Console.Clear();
+            Methods.PrintLogo();
+            Methods.PrintBorder();
 
+            Methods.WhiteSpace();
             Console.WriteLine("Enter the name of the clothing:");
+            Methods.PrintBorder();
+            Methods.WhiteSpace();
             item.Name = Console.ReadLine();
+            Methods.WhiteSpace();
             Console.WriteLine("Name added, succesfully!");
 
-            Console.WriteLine("Enter the category:\n1.Tshirts\n2.Longsleeves\n3.Jeans\n4.Dress Pants\n5. Dress\n6. Sweater\n7. Pyjama\n8. Intimates\n9. Misc");
+            Console.Clear();
+            Methods.PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Select an option:                                            ::
+            ::                                                                ::
+            ::   1) T-shirts                                                  ::
+            ::   2) Longsleeve                                                ::
+            ::   3) Jeans                                                     ::
+            ::   4) DressPants                                                ::
+            ::   5) Dress                                                     ::
+            ::   6) Sweater                                                   ::
+            ::   7) Pyjama                                                    ::
+            ::   8) Intimates                                                 ::
+            ::   9) Misc                                                      ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ");
+            Methods.WhiteSpace();
             string categoryChoice = Console.ReadLine();
             item.Category = ConvertCategorie(categoryChoice);
+            Methods.WhiteSpace();
             Console.WriteLine("Category added, succesfully!");
 
-            Console.WriteLine("Enter the size:\n1. XS\n2. S\n3. M\n4. L\n5. XXL\n6. TU");
+            Console.Clear();
+            Methods.PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Select a size:                                               ::
+            ::                                                                ::
+            ::   1) XS                                                        ::
+            ::   2) S                                                         ::
+            ::   3) M                                                         ::
+            ::   4) L                                                         ::
+            ::   5) XL                                                        ::
+            ::   6) XXL                                                       ::
+            ::   7) Taille Unique                                             ::
+            ::   8) Intimates                                                 ::
+            ::   9) Misc                                                      ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ");
+            Methods.WhiteSpace();
             string clothingSizeChoice = Console.ReadLine();
             item.ClothingSizes = ConvertClothingSize(clothingSizeChoice);
+            Methods.WhiteSpace();
             Console.WriteLine("Size added, succesfully!");
 
-            Console.WriteLine("Enter the color:\n1. Blue\n2. Black\n3. Red\n4. Green\n5. Yellow\n6. Pink\n7. White\n8. Gold\n9. Silver");
+            Console.Clear();
+            Methods.PrintLogo();
+            Console.WriteLine(@"
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::                                                                ::
+            ::   Select a color:                                              ::
+            ::                                                                ::
+            ::   1) Blue                                                      ::
+            ::   2) Black                                                     ::
+            ::   3) Red                                                       ::
+            ::   4) Green                                                     ::
+            ::   5) Yellow                                                    ::
+            ::   6) Pink                                                      ::
+            ::   7) White                                                     ::
+            ::   8) Gold                                                      ::
+            ::   9) Silver                                                    ::
+            ::                                                                ::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+            ");
+            Methods.WhiteSpace();
             string colorChoice = Console.ReadLine();
             item.ColorOptions = ConvertColor(colorChoice);
+            Methods.WhiteSpace();
             Console.WriteLine("Color added, succesfully!");
 
+            Console.Clear();
+            Methods.PrintLogo();
+            Methods.PrintBorder();
+            Methods.WhiteSpace();
             Console.WriteLine("Enter the price of that piece of clothing:");
+            Methods.PrintBorder();
+            Methods.WhiteSpace();
             item.Price = Convert.ToDouble(Console.ReadLine());
+            Methods.WhiteSpace();
             Console.WriteLine("Price added, succesfully!");
             item.ID = Catalogue.Count + 1;
             Catalogue.Add(item);
-            writer.Write($"\n{item.ID},{categoryChoice},{item.Name},{item.Price:#.##}");
+            writer.Write($"\n{item.ID},{categoryChoice},{item.Name},{clothingSizeChoice},{colorChoice},{item.Price:#.##}");
 
             writer.Close();
         }
@@ -71,9 +151,8 @@ namespace Project1
             lines.RemoveAt(remover);
             lines.ToArray();
             Catalogue.RemoveAt(remover - 1);
-            Methods.Cart.RemoveAt(remover - 1);
             DeleteFile(filePath);
-            WriteDataToFile(lines.ToArray(), filePath2);
+            WriteDataToFile(lines.ToArray(), filePath);
         }
 
         public void WriteDataToFile(string[] lines, string path)
