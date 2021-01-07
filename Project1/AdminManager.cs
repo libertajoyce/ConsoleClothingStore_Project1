@@ -24,5 +24,18 @@ namespace Project1
         {
             throw new NotImplementedException();
         }
+        //readerWriter.CopyData(filePath, filePath2);
+        //fileManager.DeleteFile(filePath);
+
+        //public void CopyData(string fromPath, string toPath)
+        //{
+        //    List<string> lines = ReadDataFromFile(fromPath);
+        //    int remover = Convert.ToInt32(Console.ReadLine());
+        //    lines.RemoveAt(remover);
+        //    lines.Add("I'm the last of my kind.");
+        //    lines.ToArray();
+
+        //    WriteDataToFile(lines.ToArray(), toPath);
+        //}
     }
 }

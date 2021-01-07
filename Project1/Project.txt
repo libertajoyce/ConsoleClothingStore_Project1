@@ -10,4 +10,4 @@
 - Wiskunde
 	o Berekenen van prijzen
 	o Afronden van getallen
-- Data opslaan en ophalen uit een extern bestandUITERSTE DEADLINE voor het indienen van het project: Zondag 10/01 om 23:59.
+- Data opslaan en ophalen uit een extern bestandUITERSTE DEADLINE voor het indienen van het project: Zondag 10/01 om 23:59.

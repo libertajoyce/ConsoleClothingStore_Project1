@@ -7,7 +7,7 @@ namespace Project1
     internal class Methods
     {
         private Random budgetCard = new Random();
-        private static List<Clothes> Cart = new List<Clothes>();
+        public static List<Clothes> Cart = new List<Clothes>();
         Stock stock = new Stock();
 
         public static void PrintLogo()
@@ -68,11 +68,29 @@ namespace Project1
             MenuSelection();
         }
 
-        public void OwnerMenu()
+        public bool OwnerMenu()
         {
             AdminManager managing = new AdminManager();
-            Console.WriteLine("This is the owner menu");
-            stock.AddToInventory();
+            Console.WriteLine("Enter the number of the option you want to select:\n1. Add to inventory.\n2. Remove from inventory\n3. Go back to main menu.");
+            string ownerChoice = Console.ReadLine();
+            switch (Convert.ToChar(ownerChoice))
+            {
+                case '1':
+                    AddToInventory();
+                    return true;
+
+                case '2':
+                    RemoveFromInventory();
+                    return true;
+
+                case '3':
+                    Menu();
+                    return false;
+
+                default:
+                    ErrorMessage("Wrong Selection!",20);
+                    return true;
+            }
         }
 
         public void MenuSelection()
@@ -116,7 +134,14 @@ namespace Project1
                 ErrorMessage("Error! Not a correct input!", 20);
             }
         }
-
+        public void AddToInventory()
+        {
+            stock.OwnerWriteText();
+        }
+        public void RemoveFromInventory()
+        {
+            stock.OwnerDeleteText();
+        }
         public void ShowCatalogue()
         {
             PrintLogo();

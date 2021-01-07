@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Inventory2.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.IO" Version="4.3.0" />
   </ItemGroup>
 
