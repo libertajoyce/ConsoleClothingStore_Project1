@@ -9,6 +9,7 @@ namespace Project1
         private Random budgetCard = new Random();
         private static List<Clothes> Cart = new List<Clothes>();
         Stock stock = new Stock();
+
         public static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -335,9 +336,7 @@ namespace Project1
                 Console.ReadLine();
                 ReviewOrder();
             }
-            //PrintBorder();
-            //Console.ReadLine();
-            //PrintTicket();
+            
         }
 
         private double CartTotal()

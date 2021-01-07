@@ -15,10 +15,12 @@ namespace Project1
 
             ReadFile();
         }
+
         public void AddToInventory()
         {
             WriteText("C:/users/emmad/source/repos/Project1/Project1/Inventory.txt");
         }
+
         //Owner or admin adds to file still needs modifications
         public void WriteText(string path)
         {
@@ -67,7 +69,9 @@ namespace Project1
                     ID = Convert.ToInt32(data[0]),
                     Category = ConvertCategorie(data[1]),
                     Name = data[2],
-                    Price = Convert.ToDouble(data[3])
+                    ClothingSizes = ConvertClothingSize(data[3]),
+                    ColorOptions = ConvertColor(data[4]),
+                    Price = Convert.ToDouble(data[5])
                 };
                 Catalogue.Add(item);
             }
@@ -132,9 +136,13 @@ namespace Project1
                 case "5":
                     return Color.Yellow;
                 case "6":
-                    return Color.Pink; 
-                default:
+                    return Color.Pink;
+                case "7":
                     return Color.White;
+                case "8":
+                    return Color.Gold;
+                default:
+                    return Color.Silver;
             }
         }
     }

@@ -9,10 +9,6 @@ namespace Project1
         {
             Console.OutputEncoding = Encoding.UTF8;
             Methods methode = new Methods();
-            //Stock stock = new Stock();
-
-            //stock.ShowItems();
-
             bool showMenu = true;
             while (showMenu)
             {
